@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import WebAdmin from '@/components/WebAdmin'
-import Register from '@/components/Register'
+import Login from '@/components/Login'
+import Cards from '@/components/Cards'
 
 Vue.use(Router)
 
@@ -13,9 +14,14 @@ export default new Router({
       component: WebAdmin
     },
     {
-      path: '/register',
-      name: 'register',
-      component: Register
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/cards',
+      name: 'cards',
+      component: Cards
     }
   ]
 })

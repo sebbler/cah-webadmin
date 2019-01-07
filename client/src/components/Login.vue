@@ -26,11 +26,6 @@
                               placeholder="Password">
                 </b-form-input>
               </b-form-group>
-              <!--<b-form-group id="exampleGroup4">
-                <b-form-checkbox-group v-model="form.checked" id="exampleChecks">
-                  <b-form-checkbox value="remember">Remember me</b-form-checkbox>
-                </b-form-checkbox-group>
-              </b-form-group>-->
               <b-button type="submit" variant="primary">Login</b-button>
             </b-form>
           </b-card>

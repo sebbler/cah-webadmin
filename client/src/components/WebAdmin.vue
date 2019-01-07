@@ -1,15 +1,15 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <h2>Ecosystem</h2>
+  <b-container>
+    <h1>Web Admin Interface</h1>
+    <h2>Cards Against Humanity</h2>
+    <p>{{ msg }}</p>
     <ul>
       <li>
         <a
           href="http://router.vuejs.org/"
           target="_blank"
         >
-          vue-router
+          HdM
         </a>
       </li>
       <li>
@@ -17,7 +17,7 @@
           href="http://vuex.vuejs.org/"
           target="_blank"
         >
-          vuex
+          Team
         </a>
       </li>
       <li>
@@ -25,7 +25,7 @@
           href="http://vue-loader.vuejs.org/"
           target="_blank"
         >
-          vue-loader
+          ...
         </a>
       </li>
       <li>
@@ -33,11 +33,11 @@
           href="https://github.com/vuejs/awesome-vue"
           target="_blank"
         >
-          awesome-vue
+          ...
         </a>
       </li>
     </ul>
-  </div>
+    </b-container>
 </template>
 
 <script>
@@ -45,7 +45,7 @@ export default {
   name: 'WebAdmin',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Was geht ab'
     }
   }
 }
