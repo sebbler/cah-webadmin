@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
@@ -41,8 +42,20 @@ export default {
         { isActive: true, card_special: 38, card_text: 'Jami', card_set: 'Carney' }
       ],
       newCard: '',
-      selected: ''
+      selected: '',
+      status: ''
     }
+  },
+  mounted () {
+    console.log('hey there')
+    axios.get('http://localhost:8081/')
+      .then((response) => {
+        console.log('hey there')
+        console.log(response.data)
+      })
+  },
+  methods () {
+    this.status = 'Loading...'
   }
 }
 </script>

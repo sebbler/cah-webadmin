@@ -3,10 +3,12 @@ const mongodb = require('mongodb')
 
 const router = express.Router()
 
+/* var url = 'mongodb://localhost:12' */
 
+/* eslint-disable */
 // Get Cards
 router.get('/', async (req, res) => {
-    // res.send(await 'Hier werden die Karten aus der Datenbank geladen: ...');
+    // res.send(await 'Hier werden die Karten aus der Datenbank geladen: ...')
     const cards = await loadCardsCollection();
     res.send(await cards.find({}).toArray());/**/
 });

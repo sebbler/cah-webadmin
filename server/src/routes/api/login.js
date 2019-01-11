@@ -1,37 +1,51 @@
 const express = require('express')
-const mongodb = require('mongodb')
-
+/* const mongodb = require('mongodb')
+*/
 const router = express.Router()
 
-
+/* eslint-disable */
 // Get Cards
-router.get('/', async (req, res) => {
-    // res.send(await 'Hier werden die Karten aus der Datenbank geladen: ...');
-    const cards = await loadCardsCollection();
-    res.send(await cards.find({}).toArray());
+router.get('/', (req, res, next) => {
+    res.status(200).json({
+      message: 'GET Requests /login'
+    })
 });
 
 
-// Add Cards
-router.post('/', async (req, res) => {
-    const cards = await loadCardsCollection();
-    await cards.insertOne({
-        text: req.body.text,
-        createdAt: new Date()
-    });
-    res.status(201).send();
-});
+/*  */
+router.post('/', (req, res, next) => {
+  res.status(200).json({
+    message: 'Insert new card to cards'
+  })
+})
 
+/* get single card with id */
+router.get('/:cardId', (req, res, next) => {
+  const id = req.params.cardId
+  if (id === 'special') {
+    res.status(200).json({
+      message: 'special ID',
+      id: id
+    })
+  } else {
+      res.status(200).json({
+        message: 'You passed an ID'
+      })
+    }
+})
 
-// connection to database, get all cards
-async function loadCardsCollection(){
-    const client = await mongodb.MongoClient.connect
-    // ('ec2-52-202-79-225.compute-1.amazonaws.com:8080/api/cards/promt', {
-    ('mongodb://abc123:abc123@ds139614.mlab.com:39614/vue_express', {
-        useNewUrlParser: true
-    });
+/* Patch card */
+router.patch('/:cardId', (req, res, next) => {
+  res.status(200).json({
+    message: 'Cards updated'
+  })
+})
 
-    return client.db('vue_express').collection('promt');
-}
+/* Delete card */
+router.delete('/:cardId', (req, res, next) => {
+  res.status(200).json({
+    message: 'Cards deleted'
+  })
+})
 
 module.exports = router;
