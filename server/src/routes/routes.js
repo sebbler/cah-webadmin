@@ -1,6 +1,6 @@
-const AuthenticationController = require('./controllers/AuthenticationController.js')
+const AuthenticationController = require('../controllers/AuthenticationController.js')
 
 module.exports = (app) => {
-  app.post('/login',
+  app.post('/login2',
     AuthenticationController.login)
 }

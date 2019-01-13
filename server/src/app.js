@@ -6,8 +6,8 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 
 const cardsRoutes = require('./routes/api/cards')
-/* */
 
+/* connect to database via mongoose */
 const URI = 'mongodb+srv://admin:' + process.env.MONGO_ATLAS_PW + '@cards-a-hum-tscf6.mongodb.net/test?retryWrites=true/api'
 const OPTS = { useNewUrlParser: true };
 mongoose.connect(URI, OPTS, function(err) {
@@ -39,13 +39,15 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin','*')
   res.header ('Access-Control-Allow-Headers', '*')
   if(req.method ==='OPTIONS') {
-    res.header('Axxess-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET')
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET')
     return res.status(200).json({})
   }
   next()
 })
 
 /* some testing */
+require('./routes/routes')(app)
+
 let Card = require('./models/cardListModels')
 
 app.post('/register', (req, res) => {
@@ -74,8 +76,12 @@ app.get('/cards', function(req, res) {
 /* routes witch handle requests  */
 const loginRoutes = require('./routes/api/login')
 const promptRoutes = require('./routes/api/prompt')
+const setRoutes = require('./routes/api/sets')
+const setCards2 = require('./routes/api/cards2')
 app.use('/login',loginRoutes)
 app.use('/prompt',promptRoutes)
+app.use('/sets/all',setRoutes)
+app.use('/cards2',setCards2)
 
 /* const Card = require('./models/cardListModels')
 const cardsList = require('./routes/api/cardListRoutes')

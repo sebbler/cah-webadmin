@@ -1,9 +1,5 @@
 const express = require('express')
-const mongodb = require('mongodb')
-
 const router = express.Router()
-
-/* var url = 'mongodb://localhost:12' */
 
 /* eslint-disable */
 // Get Cards

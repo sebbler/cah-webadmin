@@ -7,7 +7,7 @@
 
       <b-navbar-nav>
         <b-nav-item @click="navigateTo({name: 'cards'})">Cards</b-nav-item>
-        <b-nav-item @click="navigateTo({name: 'cards'})">Users</b-nav-item>
+        <b-nav-item @click="navigateTo({name: 'users'})">Users</b-nav-item>
         <b-nav-item @click="navigateTo({name: 'cards'})">Gamemodes</b-nav-item>
         <b-nav-item @click="navigateTo({name: 'cards'})">Highscore</b-nav-item>
       </b-navbar-nav>
@@ -39,5 +39,8 @@ export default {
 <style scoped>
   .home {
     cursor: pointer;
+  }
+  .bg-dark {
+    background-color: #111111 !important;
   }
 </style>

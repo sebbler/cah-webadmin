@@ -49,11 +49,15 @@ export default {
   },
   methods: {
     async onSubmit () {
-      const response = await AuthenticationService.register({
-        email: this.login.email,
-        password: this.login.password
-      })
-      console.log(response.data)
+      try {
+        const response = await AuthenticationService.login({
+          email: this.login.email,
+          password: this.login.password
+        })
+        console.log(response.data)
+      } catch (error) {
+        this.error = error.response.data.error
+      }
     }
   }
 }

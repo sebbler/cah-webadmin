@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import WebAdmin from '@/components/WebAdmin'
 import Login from '@/components/Login'
 import Cards from '@/components/Cards'
+import Users from '@/components/Users'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/cards',
       name: 'cards',
       component: Cards
+    },
+    {
+      path: '/users',
+      name: 'users',
+      component: Users
     }
   ]
 })

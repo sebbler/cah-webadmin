@@ -7,15 +7,19 @@
         <router-view/>
       </div>
     </main>
+    <!-- Footer -->
+    <page-footer />
   </div>
 </template>
 
 <script>
 import PageHeader from './components/PageHeader.vue'
+import PageFooter from './components/PageFooter.vue'
 export default {
   name: 'App',
   components: {
-    PageHeader
+    PageHeader,
+    PageFooter
   }
 }
 </script>
@@ -28,6 +32,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;*/
+}
+main{
+  min-height: 100vh;
+  margin-bottom: 100px;
 }
 .wrapper{
   padding-top:40px;

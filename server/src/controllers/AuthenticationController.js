@@ -1,15 +1,15 @@
 /* eslint-disable */
-const { User } = require('../models')
+/* const { User } = require('../models') */
 
 module.exports = {
 	async login (req, res) {
 		try{
-			const {email, password} = req.body
+			/* const {email, password} = req.body
 			const user = await User.findOne({
 				where: {
 					email: email
 				}
-			})
+			}) */
 			if (!user) {
 				return res.status(403).send({
 					error:'Invalid login information'
