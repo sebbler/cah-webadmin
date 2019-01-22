@@ -52,6 +52,11 @@
         <b-col md="6" class="my-1">
           <strong>{{ totalRows }} cards found: </strong> <strong>Filter used: {{ filterSet }}</strong>
         </b-col>
+        <b-col md="6" class="my-1">
+          <b-form-group horizontal label="Per page" class="mb-0">
+            <b-form-select :options="pageOptions" v-model="perPage" />
+          </b-form-group>
+        </b-col>
       </b-row>
       <b-table hover dark
                :items="cards"
@@ -64,7 +69,15 @@
                :sort-direction="sortDirection"
                @filtered="onFiltered"
       >
-
+        <template slot="actions" slot-scope="row">
+          <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
+          <button type="button" class="btn btn-default btn-sm deleteCard" @click.stop="row.toggleDetails">
+            <font-awesome-icon icon="trash" />
+          </button>
+          <button type="button" class="btn btn-default btn-sm editCard" @click.stop="info(row.item, row.index, $event.target)">
+            <font-awesome-icon icon="edit" />
+          </button>
+        </template>
       </b-table>
 
       <b-row>
@@ -72,15 +85,15 @@
           <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0" />
         </b-col>
       </b-row>
-      <button type="button" class="btn btn-default btn-sm">
-        <span class="glyphicon glyphicon-pencil"></span> Pencil
-      </button>
+
     </b-container>
   </div>
 </template>
 
 <script>
 import Api from '../services/Api.js'
+import axios from 'axios'
+
 export default {
   data () {
     return {
@@ -96,9 +109,10 @@ export default {
       status: '',
       sets: [],
       cards: [],
-      setss: 'All Sets',
+      setss: '',
       currentPage: 1,
       perPage: 15,
+      pageOptions: [ 10, 15, 25, 50 ],
       totalRows: 1,
       filter: null,
       filterSet: '',
@@ -109,12 +123,12 @@ export default {
   },
   mounted () {
     console.log('hey there')
-    Api().get('sets/all')
+    Api().get('api/sets/all')
       .then((response) => {
         this.sets = response.data.data
         console.log(response.data)
       })
-    Api().get('cards2')
+    axios.get('api/cards')
       .then((response) => {
         this.cards = response.data.data
         this.totalRows = response.data.data.length
@@ -159,4 +173,17 @@ export default {
 </script>
 
 <style scoped>
+  .deleteCard {
+    color: #ffffff;
+  }
+  .deleteCard:hover {
+    color: #dd4455;
+  }
+  .editCard {
+    color: #ffffff;
+  }
+  .editCard:hover {
+    color: #5577ff;
+  }
+
 </style>

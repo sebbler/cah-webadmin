@@ -8,7 +8,8 @@ const mongoose = require('mongoose')
 const cardsRoutes = require('./routes/api/cards')
 
 /* connect to database via mongoose */
-const URI = 'mongodb+srv://admin:' + process.env.MONGO_ATLAS_PW + '@cards-a-hum-tscf6.mongodb.net/test?retryWrites=true/api'
+// const URI = 'mongodb+srv://admin:' + process.env.MONGO_ATLAS_PW + '@cards-a-hum-tscf6.mongodb.net/test?retryWrites=true/api'
+const URI = 'mongodb://localhost/cards_against_humanity'
 const OPTS = { useNewUrlParser: true };
 mongoose.connect(URI, OPTS, function(err) {
   if (err) { return console.error('failed');}
@@ -78,10 +79,14 @@ const loginRoutes = require('./routes/api/login')
 const promptRoutes = require('./routes/api/prompt')
 const setRoutes = require('./routes/api/sets')
 const setCards2 = require('./routes/api/cards2')
-app.use('/login',loginRoutes)
-app.use('/prompt',promptRoutes)
-app.use('/sets/all',setRoutes)
-app.use('/cards2',setCards2)
+const setUsersRoute = require('./routes/api/users')
+const setGamesRoute = require('./routes/api/games')
+app.use('/api/login',loginRoutes)
+app.use('/api/prompt',promptRoutes)
+app.use('/api/sets/all',setRoutes)
+app.use('/api/cards',setCards2)
+app.use('/api/games',setGamesRoute)
+app.use('/api/users',setUsersRoute)
 
 /* const Card = require('./models/cardListModels')
 const cardsList = require('./routes/api/cardListRoutes')

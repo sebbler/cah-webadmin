@@ -91,10 +91,20 @@
       </b-modal>
 
     </b-container>
+    <tr v-for="card in cards" :key="card">
+      <td>{{ card }}</td>
+      <td>{{ card }}</td>
+      <td>{{ card }}</td>
+      <td></td>
+    </tr>
   </div>
 </template>
 
 <script>
+// import CardsService from '../services/cardsService'
+// import Api from '../services/Api.js'
+import axios from 'axios'
+
 const items = [
   { isActive: true, age: 40, name: { first: 'Dickerson', last: 'Macdonald' } },
   { isActive: false, age: 21, name: { first: 'Larsen', last: 'Shaw' } },
@@ -138,7 +148,19 @@ export default {
       sortDesc: false,
       sortDirection: 'asc',
       filter: null,
-      modalInfo: { title: '', content: '' }
+      modalInfo: { title: '', content: '' },
+      error: '',
+      cards: []
+    }
+  },
+  async created () {
+    console.log('created and requested')
+    try {
+      // this.cards = await CardsService.getCards()
+      this.cards = await axios.get('api/sets/all')
+      console.log(this.cards)
+    } catch (err) {
+      this.error = err.message
     }
   },
   computed: {
@@ -167,10 +189,6 @@ export default {
   }
 }
 </script>
-
-https://code.jquery.com/jquery-3.3.1.js
-https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js
-https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js
 
 <style scoped>
 </style>
